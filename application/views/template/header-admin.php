@@ -4,7 +4,7 @@
 <head>
 
     <meta charset="utf-8" />
-    <title>Analytics | Velzon - Admin & Dashboard Template</title>
+    <title>Sistem Invetaris</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
     <meta content="Themesbrand" name="author" />
@@ -24,6 +24,11 @@
     <link href="<?= base_url() ?>assets/css/app.min.css" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="<?= base_url() ?>assets/css/custom.min.css" rel="stylesheet" type="text/css" />
+
+     <!--datatable css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css" />
+    <!--datatable responsive css-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css" />
 
 </head>
 
@@ -144,7 +149,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="widgets.html">
+                                <a class="nav-link menu-link" href="<?= base_url() ?>Admin/pengguna">
                                     <i class="ri-group-line"></i> <span data-key="t-dashboard">Data Pengguna</span>
                                 </a>
                             </li>
