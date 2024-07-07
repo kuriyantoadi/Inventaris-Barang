@@ -89,7 +89,7 @@ class Login extends CI_Controller {
   {
     $this->session->sess_destroy();
     $url = base_url();
-    redirect('index.php/Login/fa');
+    redirect('Login');
   }
 
 }

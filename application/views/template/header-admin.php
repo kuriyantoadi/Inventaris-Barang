@@ -70,7 +70,7 @@
                         <h6 class="dropdown-header">Welcome Anna!</h6>
                         <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>
                         
-                        <a class="dropdown-item" href="auth-logout-basic.html"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
+                        <a class="dropdown-item" href="<?= base_url() ?>Login/admin_logout"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
                     </div>
                 </div>
             </div>
@@ -143,8 +143,14 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="widgets.html">
+                                <a class="nav-link menu-link" href="<?= base_url() ?>Admin/barang">
                                     <i class="ri-archive-line"></i> <span data-key="t-dashboard">Data Barang</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?= base_url() ?>Admin/kategori_barang">
+                                    <i class="ri-filter-line"></i> <span data-key="t-dashboard">Data Kategori Barang</span>
                                 </a>
                             </li>
 

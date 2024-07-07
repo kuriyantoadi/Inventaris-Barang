@@ -8,27 +8,34 @@
             </div>
             <div class="modal-body">
                 
-             <?= form_open('Admin/pengguna_tambah_up'); ?>
+             <?= form_open('Admin/barang_tambah_up'); ?>
                 <table class="table">
                     <tr>
-                        <td>Username</td>
+                        <td>Nama Barang</td>
                         <td>
-                            <input type="text" name="username" class="form-control" required>
+                            <input type="text" name="nama_barang" class="form-control" required>
                         </td>
                     </tr>
                     <tr>
-                        <td>Password</td>
+                        <td>Kategori Barang</td>
                         <td>
-                            <input type="password" name="password" class="form-control" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Status</td>
-                        <td>
-                            <select name="status" class="form-control"  id="" required>
+                            
+                            <select name="id_kategori_barang" class="form-control"  id="" required>
                                 <option value="">Pilihan</option>
-                                <option value="admin">Admin</option>
-                                <option value="waka_sarpras">Waka Sarpras</option>
+                                <?php foreach ($tampil_kategori as $row_2) { ?>
+                                  <option value="<?= $row_2->nama_kategori_barang ?>"><?= $row_2->nama_kategori_barang ?></option>
+                                <?php } ?>
+                            </select>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Kondisi Barang</td>
+                        <td>
+                            <select name="kondisi" class="form-control"  id="" required>
+                                <option value="">Pilihan</option>
+                                <option value="baik">baik</option>
+                                <option value="rusak">rusak</option>
                             </select>
                         </td>
                     </tr>
@@ -156,7 +163,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Data Pengguna</h5>
+                <h5 class="card-title mb-0">Data Barang</h5>
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('msg') ?>
@@ -166,8 +173,10 @@
                     <thead>
                         <tr>                            
                             <th>No</th>
-                            <th>Username</th>
-                            <th>Status</th>
+                            <th>Nama Barang</th>
+                            <th>Jumlah Barang</th>
+                            <th>Kategori Barang</th>
+                            <th>Kondisi Barang</th>
                             <th>Opsi</th>                            
                         </tr>
                     </thead>
@@ -179,8 +188,10 @@
                         ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $row->username ?></td>
-                            <td><?= $row->status ?></td>
+                            <td><?= $row->nama_barang ?></td>
+                            <td><?= $row->jumlah_barang ?></td>
+                            <td><?= $row->nama_kategori_barang ?></td>
+                            <td><?= $row->kondisi_barang ?></td>
                             <td>
                                 <div class="dropdown d-inline-block">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">

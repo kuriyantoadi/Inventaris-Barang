@@ -17,7 +17,83 @@ class M_admin extends CI_Model{
     $this->db->insert('tb_user', $data_tambah);
   }
 
+  function pengguna_edit_up($data_edit, $id_user)
+  {
+    $this->db->where('id_user', $id_user);
+    $this->db->update('tb_user', $data_edit);
+  }
+
+
+  public function pengguna_hapus($id_user)
+  {
+    $this->db->where($id_user);
+    $this->db->delete('tb_user');
+  }
+
   // akhir user
+
+
+  // awal barang
+
+   public function barang()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_barang');
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+  public function barang_tambah_up($data_tambah)
+  {
+    $this->db->insert('tb_barang', $data_tambah);
+  }
+
+  function barang_edit_up($data_edit, $id_barang)
+  {
+    $this->db->where('tb_barang', $id_barang);
+    $this->db->update('tb_barang', $data_edit);
+  }
+
+
+  public function barang_hapus($id_barang)
+  {
+    $this->db->where($id_barang);
+    $this->db->delete('tb_barang');
+  }
+
+  // akhir barang
+
+
+  // awal kategori barang
+
+  public function kategori_barang()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_kategori_barang');
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+  public function kategori_barang_tambah_up($data_tambah)
+  {
+    $this->db->insert('tb_kategori_barang', $data_tambah);
+  }
+
+  function kategori_barang_edit_up($data_edit, $id_kategori_barang)
+  {
+    $this->db->where('id_kategori_barang', $id_kategori_barang);
+    $this->db->update('tb_kategori_barang', $data_edit);
+  }
+
+
+  public function kategori_barang_hapus($id_kategori_barang)
+  {
+    $this->db->where($id_kategori_barang);
+    $this->db->delete('tb_kategori_barang');
+  }
+
+
+  // akhir kategori barang
 
   public function user_kompetensi()
   {
@@ -68,11 +144,11 @@ class M_admin extends CI_Model{
     return $query;
   }
 
-  function siswa_edit_up($data_edit, $id_siswa)
-  {
-    $this->db->where('id_siswa', $id_siswa);
-    $this->db->update('tb_pendaftar', $data_edit);
-  }
+  // function siswa_edit_up($data_edit, $id_siswa)
+  // {
+  //   $this->db->where('id_siswa', $id_siswa);
+  //   $this->db->update('tb_pendaftar', $data_edit);
+  // }
   // akhir siswa
 
 
