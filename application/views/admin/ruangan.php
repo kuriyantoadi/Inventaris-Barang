@@ -3,42 +3,20 @@
     <div class="modal-dialog modal-fullscreen-lg-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalFullscreenLgLabel">Tambah Barang</h5>
+                <h5 class="modal-title" id="exampleModalFullscreenLgLabel">Tambah Ruangan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 
-             <?= form_open('Admin/barang_tambah_up'); ?>
+             <?= form_open('Admin/ruangan_tambah_up'); ?>
                 <table class="table">
                     <tr>
-                        <td>Nama Barang</td>
+                        <td>Nama Ruangan</td>
                         <td>
-                            <input type="text" name="nama_barang" class="form-control" required>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kategori Barang</td>
-                        <td>
-                            
-                            <select name="id_kategori_barang" class="form-control"  id="" required>
-                                <option value="">Pilihan</option>
-                                <?php foreach ($tampil_kategori as $row_2) { ?>
-                                  <option value="<?= $row_2->id_kategori_barang ?>"><?= $row_2->nama_kategori_barang ?></option>
-                                <?php } ?>
-                            </select>
+                            <input type="text" name="nama_ruangan" class="form-control" required>
                         </td>
                     </tr>
                     
-                    <tr>
-                        <td>Kondisi Barang</td>
-                        <td>
-                            <select name="kondisi_barang" class="form-control"  id="" required>
-                                <option value="">Pilihan</option>
-                                <option value="baik">baik</option>
-                                <option value="rusak">rusak</option>
-                            </select>
-                        </td>
-                    </tr>
                 </table>
                
             </div>
@@ -56,47 +34,25 @@
 <!-- Awal Modal Edit -->
 <?php foreach ($tampil as $row): ?>
 
-<div class="modal fade" id="modalEdit<?= $row->id_barang ?>" tabindex="-1" aria-labelledby="exampleModalFullscreenLgLabel" aria-hidden="true">
+<div class="modal fade" id="modalEdit<?= $row->id_ruangan ?>" tabindex="-1" aria-labelledby="exampleModalFullscreenLgLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen-lg-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalFullscreenLgLabel">Edit Barang</h5>
+                <h5 class="modal-title" id="exampleModalFullscreenLgLabel">Edit Ruangan</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 
-             <?= form_open('Admin/barang_edit_up'); ?>
+             <?= form_open('Admin/ruangan_edit_up'); ?>
                 <table class="table">
                     <tr>
-                        <td>Nama Barang</td>
+                        <td>Nama Ruangan</td>
                         <td>
-                            <input type="text" name="nama_barang" class="form-control" value="<?= $row->nama_barang ?>" required>
-                            <input type="hidden" name="id_barang" value="<?= $row->id_barang ?>">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kategori Barang</td>
-                        <td>
-                            
-                            <select name="id_kategori_barang" class="form-control"  id="" required>
-                                <option value="<?= $row->id_kategori_barang ?>">Pilihan Awal ( <?= $row->nama_kategori_barang ?> )</option>
-                                <?php foreach ($tampil_kategori as $row_2) { ?>
-                                  <option value="<?= $row_2->id_kategori_barang ?>"><?= $row_2->nama_kategori_barang ?></option>
-                                <?php } ?>
-                            </select>
+                            <input type="text" name="nama_ruangan" class="form-control" value="<?= $row->nama_ruangan ?>" required>
+                            <input type="hidden" name="id_ruangan" value="<?= $row->id_ruangan ?>">
                         </td>
                     </tr>
                     
-                    <tr>
-                        <td>Kondisi Barang</td>
-                        <td>
-                            <select name="kondisi_barang" class="form-control"  id="" required>
-                                <option value="<?= $row->kondisi_barang ?>">Pilihan Awal ( <?= $row->kondisi_barang ?> )</option>
-                                <option value="baik">baik</option>
-                                <option value="rusak">rusak</option>
-                            </select>
-                        </td>
-                    </tr>
                 </table>
 
             </div>
@@ -121,7 +77,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Data Barang</h5>
+                <h5 class="card-title mb-0">Data Ruangan</h5>
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('msg') ?>
@@ -131,10 +87,7 @@
                     <thead>
                         <tr>                            
                             <th>No</th>
-                            <th>Nama Barang</th>
-                            <th>Jumlah Barang</th>
-                            <th>Kategori Barang</th>
-                            <th>Kondisi Barang</th>
+                            <th>Nama Ruangan</th>
                             <th>Opsi</th>                            
                         </tr>
                     </thead>
@@ -146,10 +99,7 @@
                         ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $row->nama_barang ?></td>
-                            <td><?= $row->jumlah_barang ?></td>
-                            <td><?= $row->nama_kategori_barang ?></td>
-                            <td><?= $row->kondisi_barang ?></td>
+                            <td><?= $row->nama_ruangan ?></td>
                             <td>
                                 <div class="dropdown d-inline-block">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -157,13 +107,13 @@
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
                                         <li>
-                                            <button type="button" class="dropdown-item edit-item-btn" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $row->id_barang ?>">
+                                            <button type="button" class="dropdown-item edit-item-btn" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $row->id_ruangan ?>">
                                                 <i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Edit
                                             </button>
                                         </li>
                                         
                                         <li>
-                                            <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('Admin/barang_hapus/'.$row->id_barang) ?>" onclick="return confirm('Anda yakin menghapus data barang <?= $row->nama_barang ?> ?')">
+                                            <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('Admin/ruangan_hapus/'.$row->id_ruangan) ?>" onclick="return confirm('Anda yakin menghapus data ruangan <?= $row->nama_ruangan ?> ?')">
                                                 <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                             </a>
                                         </li>

@@ -155,6 +155,18 @@
                             </li>
 
                             <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?= base_url() ?>Admin/barang_masuk">
+                                    <i class="ri-login-box-line"></i> <span data-key="t-dashboard">Data Barang Masuk</span>
+                                </a>
+                            </li>
+
+                             <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?= base_url() ?>Admin/ruangan">
+                                    <i class="ri-home-6-line"></i> <span data-key="t-dashboard">Data Ruangan</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?= base_url() ?>Admin/pengguna">
                                     <i class="ri-group-line"></i> <span data-key="t-dashboard">Data Pengguna</span>
                                 </a>

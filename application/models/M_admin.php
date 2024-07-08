@@ -39,6 +39,7 @@ class M_admin extends CI_Model{
   {
     $this->db->select('*');
     $this->db->from('tb_barang');
+    $this->db->join('tb_kategori_barang', 'tb_barang.id_kategori_barang = tb_kategori_barang.id_kategori_barang');
     $query = $this->db->get()->result();
     return $query;
   }
@@ -50,7 +51,7 @@ class M_admin extends CI_Model{
 
   function barang_edit_up($data_edit, $id_barang)
   {
-    $this->db->where('tb_barang', $id_barang);
+    $this->db->where('id_barang', $id_barang);
     $this->db->update('tb_barang', $data_edit);
   }
 
@@ -122,9 +123,36 @@ class M_admin extends CI_Model{
     $this->db->delete('tb_user');
   }
 
-
-
   // akhir user
+
+  // awal ruangan
+  public function ruangan()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_ruangan');
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+  public function ruangan_tambah_up($data_tambah)
+  {
+    $this->db->insert('tb_ruangan', $data_tambah);
+  }
+
+  function ruangan_edit_up($data_edit, $id_ruangan)
+  {
+    $this->db->where('id_ruangan', $id_ruangan);
+    $this->db->update('tb_ruangan', $data_edit);
+  }
+
+
+  public function ruangan_hapus($id_ruangan)
+  {
+    $this->db->where($id_ruangan);
+    $this->db->delete('tb_ruangan');
+  }
+
+  // akhir ruangan
 
   //awal siswa
   public function siswa_hapus($id_siswa)
