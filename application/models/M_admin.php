@@ -154,6 +154,106 @@ class M_admin extends CI_Model{
 
   // akhir ruangan
 
+  // awal barang masuk
+
+  public function barang_masuk()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_barang_masuk');
+    $this->db->join('tb_barang', 'tb_barang_masuk.id_barang = tb_barang.id_barang');
+    $this->db->join('tb_kategori_barang', 'tb_barang.id_kategori_barang = tb_kategori_barang.id_kategori_barang');
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+  public function barang_masuk_tambah_up($data_tambah)
+  {
+    $this->db->insert('tb_barang_masuk', $data_tambah);
+  }
+
+  function barang_masuk_edit_up($data_edit, $id_barang_masuk)
+  {
+    $this->db->where('id_barang_masuk', $id_barang_masuk);
+    $this->db->update('tb_barang_masuk', $data_edit);
+  }
+
+
+  public function barang_masuk_hapus($id_barang_masuk)
+  {
+    $this->db->where($id_barang_masuk);
+    $this->db->delete('tb_barang_masuk');
+  }
+
+
+  // akhir barang masuk
+
+
+  // awal input barang masuk
+  public function input_barang_masuk_up($data_tambah)
+  {
+    $this->db->insert('tb_barang_masuk', $data_tambah);
+  }
+
+  public function input_barang_masuk_up_jumlah($jumlah_barang_masuk, $id_barang) {
+    // Ambil nilai awal dari database
+    $this->db->select('jumlah_barang');
+    $this->db->from('tb_barang');
+    $this->db->where('id_barang', $id_barang); // Pastikan untuk menyesuaikan kondisi 'where' sesuai dengan kebutuhan Anda
+    $query = $this->db->get();
+
+    if ($query->num_rows() > 0) {
+          $row = $query->row();
+          $nilai_awal = $row->jumlah_barang;
+
+          // Tambahkan inputan ke nilai awal
+          $hasil_akhir = $nilai_awal + $jumlah_barang_masuk;
+
+          // Update database
+          $this->db->set('jumlah_barang', $hasil_akhir);
+          $this->db->where('id_barang', $id_barang); // Pastikan untuk menyesuaikan kondisi 'where' sesuai dengan kebutuhan Anda
+          $this->db->update('tb_barang'); // Ganti 'tb_barang' dengan nama tabel Anda
+
+          if ($this->db->affected_rows() > 0) {
+              // echo "Nilai berhasil diupdate menjadi $hasil_akhir";
+          } else {
+              // echo "Tidak ada perubahan yang dilakukan.";
+          }
+
+      } else {
+          // echo "Data tidak ditemukan.";
+      }
+  }
+
+  // akhir input barang masuk
+
+
+  // awal input barang keluar
+  public function input_barang_keluar_up($data_tambah)
+  {
+    $this->db->insert('tb_barang_keluar', $data_tambah);
+  }
+
+  public function barang_keluar()
+  {
+    $this->db->select('*');
+    $this->db->from('tb_barang_keluar');
+    $this->db->join('tb_barang', 'tb_barang_keluar.id_barang = tb_barang.id_barang');
+    $this->db->join('tb_kategori_barang', 'tb_barang.id_kategori_barang = tb_kategori_barang.id_kategori_barang');
+    $this->db->join('tb_ruangan', 'tb_barang_keluar.id_ruangan = tb_ruangan.id_ruangan');
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+  function photo_barang_hapus($data_edit, $kode_barang)
+  {
+    $this->db->where($kode_barang);
+    $this->db->update('tb_barang', $data_edit);
+  }
+  // akhir input barang keluar
+
+
+  // bagian siswa
+
   //awal siswa
   public function siswa_hapus($id_siswa)
   {

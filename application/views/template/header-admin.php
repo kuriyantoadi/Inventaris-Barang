@@ -1,3 +1,9 @@
+<?php
+$username = $this->session->userdata('ses_user');
+$ses_id = $this->session->userdata('ses_id');
+
+?>
+
 <!doctype html>
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable" data-theme="default" data-theme-colors="default">
 
@@ -12,6 +18,9 @@
     <link rel="shortcut icon" href="<?= base_url() ?>assets/images/favicon.ico">
 
     <!-- plugin css -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+
     <link href="<?= base_url() ?>assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
 
     <!-- Layout config Js -->
@@ -43,7 +52,6 @@
             <div class="d-flex">
                 <!-- LOGO -->
                
-
                 <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger material-shadow-none" id="topnav-hamburger-icon">
                     <span class="hamburger-icon">
                         <span></span>
@@ -60,14 +68,14 @@
                         <span class="d-flex align-items-center">
                             <img class="rounded-circle header-profile-user" src="<?= base_url() ?>assets/images/users/avatar-8.jpg" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
-                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">Anna Adame</span>
+                                <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text"><?= $username ?></span>
                                 <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">Founder</span>
                             </span>
                         </span>
                     </button>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <h6 class="dropdown-header">Welcome Anna!</h6>
+                        <h6 class="dropdown-header">Welcome <?= $username ?>!</h6>
                         <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>
                         
                         <a class="dropdown-item" href="<?= base_url() ?>Login/admin_logout"><i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span class="align-middle" data-key="t-logout">Logout</span></a>
@@ -90,7 +98,8 @@
                         <img src="<?= base_url() ?>assets/images/logo-sm.png" alt="" height="22">
                     </span>
                     <span class="logo-lg">
-                        <h4 style="color: white; margin-top: 40px">Sistem Invetaris</h4>
+                        <img class="mt-2" src="<?= base_url('assets/images/logo-sekolah.png') ?>" style='max-width: 80px; max-height: 80;'>
+                        <h4 style="color: white; margin-top: 10px">Sistem Invetaris</h4>
                         <!-- <img src="<?= base_url() ?>assets/images/logo-light.png" alt="" height="17"> -->
                     </span>
                 </a>
@@ -105,7 +114,7 @@
                     <span class="d-flex align-items-center gap-2">
                         <img class="rounded header-profile-user" src="<?= base_url() ?>assets/images/users/avatar-8.jpg" alt="Header Avatar">
                         <span class="text-start">
-                            <span class="d-block fw-medium sidebar-user-name-text">Anna Adame</span>
+                            <span class="d-block fw-medium sidebar-user-name-text"><?= $username ?></span>
                             <span class="d-block fs-14 sidebar-user-name-sub-text"><i class="ri ri-circle-fill fs-10 text-success align-baseline"></i> <span class="align-middle">Online</span></span>
                         </span>
                     </span>
@@ -113,7 +122,7 @@
 
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <h6 class="dropdown-header">Welcome Anna!</h6>
+                    <h6 class="dropdown-header">Welcome <?= $username ?>!</h6>
                     <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>
                     <a class="dropdown-item" href="apps-chat.html"><i class="mdi mdi-message-text-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Messages</span></a>
                     <a class="dropdown-item" href="apps-tasks-kanban.html"><i class="mdi mdi-calendar-check-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Taskboard</span></a>
@@ -161,6 +170,12 @@
                             </li>
 
                              <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?= base_url() ?>Admin/barang_keluar">
+                                    <i class="ri-logout-box-line"></i> <span data-key="t-dashboard">Data Barang Keluar</span>
+                                </a>
+                            </li>
+
+                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?= base_url() ?>Admin/ruangan">
                                     <i class="ri-home-6-line"></i> <span data-key="t-dashboard">Data Ruangan</span>
                                 </a>
@@ -172,34 +187,7 @@
                                 </a>
                             </li>
                             
-                            <!-- <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboards">
-                                <i class="ri-dashboard-2-line"></i> <span data-key="t-dashboards">Dashboards</span>
-                            </a>
-                            <div class="collapse menu-dropdown" id="sidebarDashboards">
-                                <ul class="nav nav-sm flex-column">
-                                    <li class="nav-item">
-                                        <a href="dashboard-analytics.html" class="nav-link" data-key="t-analytics"> Analytics </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-crm.html" class="nav-link" data-key="t-crm"> CRM </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="index.html" class="nav-link" data-key="t-ecommerce"> Ecommerce </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-crypto.html" class="nav-link" data-key="t-crypto"> Crypto </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-projects.html" class="nav-link" data-key="t-projects"> Projects </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-nft.html" class="nav-link" data-key="t-nft"> NFT</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="dashboard-job.html" class="nav-link" data-key="t-job">Job</a>
-                                    </li>
-                                </ul>
-                            </div> -->
+                            
 
                         </li> <!-- end Dashboard Menu -->      
 

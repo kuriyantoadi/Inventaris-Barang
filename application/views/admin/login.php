@@ -37,11 +37,17 @@
                         <div class="card mt-4 card-bg-fill">
 
                             <div class="card-body p-4">
-                                <div class="text-center mt-2">
-                                    <h3 class="text-primary">Selamat Datang</h3>
-                                    <h4 class="text-muted">Sistem Inventaris Barang</h4>
+
+                                <div class="text-center">
+                                    <img src="<?= base_url('assets/images/logo-sekolah.png') ?>" style='max-width: 100px; max-height: 100px;'>
+
                                 </div>
-                                <div class="p-2 mt-4">
+                                
+                                <div class="text-center mt-2">
+                                    <h4 class="text-primary">Sistem Inventaris Barang</h4>
+                                    <h4 class="text-primary">MA AL-MUCHLISIN SUKAJADI</h4>
+                                </div>
+                                <div class="p-2 mt-2">
                                         <br><?= $this->session->flashdata('msg') ?>
                                         <?= form_open('Login/admin_login') ?>
                                         <form class="m-t-40" novalidate>
