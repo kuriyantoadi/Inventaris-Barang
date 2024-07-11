@@ -621,6 +621,7 @@ class Admin extends CI_Controller {
 	public function barang_keluar()
 	{
 	    $data['tampil'] = $this->M_admin->barang_keluar();
+		$data['tampil_ruangan'] = $this->M_admin->ruangan();
 
 		$this->load->view('template/header-admin');
 		$this->load->view('admin/barang_keluar', $data);

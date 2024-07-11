@@ -287,7 +287,6 @@
                 <?= $this->session->flashdata('msg') ?>
                 <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalTambah">Tambah</button>
                 <a href="<?= base_url() ?>Admin/barang_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Download Laporan Barang XLS</a>
-                <!-- <a href="<?= base_url() ?>Admin/barang_laporan" type="button" class="btn btn-info btn-sm mb-2">Laporan Barang XLS</a> -->
 
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
