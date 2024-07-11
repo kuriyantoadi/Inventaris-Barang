@@ -198,7 +198,7 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('msg') ?>
-                <!-- <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalTambah">Tambah</button> -->
+                <a href="<?= base_url() ?>Admin/barang_masuk_laporan" type="button" class="btn btn-info btn-sm mb-2">Laporan Barang Masuk XLS</a>
 
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>

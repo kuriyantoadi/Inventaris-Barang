@@ -677,6 +677,36 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	// awal laporan
+
+
+	public function barang_masuk_laporan()
+	{
+	    $data['tampil'] = $this->M_admin->barang_masuk();
+
+		// $this->load->view('template/header-admin');
+		$this->load->view('admin/barang_masuk_laporan', $data);
+		// $this->load->view('template/footer-admin');
+	}
+
+	public function barang_keluar_laporan()
+	{
+	    $data['tampil'] = $this->M_admin->barang_keluar();
+
+		$this->load->view('admin/barang_keluar_laporan', $data);
+	}
+
+	public function barang_laporan()
+	{
+	    $data['tampil'] = $this->M_admin->barang();
+
+		// $this->load->view('template/header-admin');
+		$this->load->view('admin/barang_laporan', $data);
+		// $this->load->view('template/footer-admin');
+	}
+
+	// akhir laporan
+
 	// akhir input barang keluar
 
     public function select()
