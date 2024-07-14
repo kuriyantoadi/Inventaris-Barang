@@ -199,8 +199,8 @@
             <div class="card-body">
                 <?= $this->session->flashdata('msg') ?>
                 <!-- <a href="<?= base_url() ?>Admin/barang_masuk_laporan" type="button" class="btn btn-info btn-sm mb-2">Laporan Barang Masuk XLS</a> -->
-                <a href="<?= base_url() ?>Admin/barang_masuk_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Masuk XLS</a>
-                <a href="<?= base_url() ?>Admin/barang_masuk_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Masuk PDF</a>
+                <!-- <a href="<?= base_url() ?>Admin/barang_masuk_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Masuk XLS</a> -->
+                <!-- <a href="<?= base_url() ?>Admin/barang_masuk_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Masuk PDF</a> -->
 
 
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">

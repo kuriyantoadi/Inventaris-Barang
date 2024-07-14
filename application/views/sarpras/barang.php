@@ -285,9 +285,9 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('msg') ?>
-                <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalTambah">Tambah</button>
-                <a href="<?= base_url() ?>Admin/barang_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang XLS</a>
-                <a href="<?= base_url() ?>Admin/barang_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang PDF</a>
+                <!-- <button type="button" class="btn btn-primary btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalTambah">Tambah</button> -->
+                <!-- <a href="<?= base_url() ?>Admin/barang_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang XLS</a> -->
+                <!-- <a href="<?= base_url() ?>Admin/barang_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang PDF</a> -->
 
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
@@ -298,7 +298,7 @@
                             <th>Jumlah Barang</th>
                             <th>Kategori Barang</th>
                             <th>Kondisi Barang</th>
-                            <th>Opsi</th>                            
+                            <!-- <th>Opsi</th>                             -->
                         </tr>
                     </thead>
                     
@@ -314,7 +314,7 @@
                             <td><?= $row->jumlah_barang ?></td>
                             <td><?= $row->nama_kategori_barang ?></td>
                             <td><?= $row->kondisi_barang ?></td>
-                            <td>
+                            <!-- <td>
                                 <div class="dropdown d-inline-block">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="ri-more-fill align-middle"></i>
@@ -346,7 +346,7 @@
                                        
                                     </ul>
                                 </div>
-                            </td>
+                            </td> -->
                         </tr>
                         <?php } ?>
                         

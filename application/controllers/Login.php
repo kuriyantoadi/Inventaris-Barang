@@ -41,11 +41,11 @@ class Login extends CI_Controller {
         $this->session->set_userdata('ses_user', $data['username']);
         redirect('Admin/index');
 
-      }elseif ($data['status']=='opver_all'){
-        $this->session->set_userdata('opver_all', true);
+      }elseif ($data['status']=='waka_sarpras'){
+        $this->session->set_userdata('waka_sarpras', true);
         $this->session->set_userdata('ses_id', $data['id_user']);
         $this->session->set_userdata('ses_user', $data['username']);
-        redirect('index.php/Op_ver/index');
+        redirect('Sarpras/index');
         
       }else{
         echo $this->session->set_flashdata('msg', '

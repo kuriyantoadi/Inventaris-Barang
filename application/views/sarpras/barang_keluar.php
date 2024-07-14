@@ -130,8 +130,8 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('msg') ?>
-                <a href="<?= base_url() ?>Admin/barang_keluar_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Keluar XLS</a>
-                <a href="<?= base_url() ?>Admin/barang_keluar_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Keluar PDF</a>
+                <!-- <a href="<?= base_url() ?>Admin/barang_keluar_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Keluar XLS</a> -->
+                <!-- <a href="<?= base_url() ?>Admin/barang_keluar_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Keluar PDF</a> -->
 
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
@@ -142,7 +142,7 @@
                             <th>Ke Ruangan</th>
                             <th>Jumlah Barang</th>
                             <th>Kondisi Barang</th>
-                            <th>Opsi</th>                            
+                            <!-- <th>Opsi</th>                             -->
                         </tr>
                     </thead>
                     
@@ -158,7 +158,7 @@
                             <td><?= $row->nama_ruangan ?></td>
                             <td><?= $row->jumlah_barang_keluar ?></td>
                             <td><?= $row->kondisi_barang_keluar ?></td>
-                            <td>
+                            <!-- <td>
                                 <div class="dropdown d-inline-block">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="ri-more-fill align-middle"></i>
@@ -170,14 +170,14 @@
                                             </button>
                                         </li>
                                         
-                                        <!-- <li>
+                                        <li>
                                             <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('Admin/barang_hapus/'.$row->id_barang) ?>" onclick="return confirm('Anda yakin menghapus data barang <?= $row->nama_barang ?> ?')">
                                                 <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                             </a>
-                                        </li> -->
+                                        </li>
                                     </ul>
                                 </div>
-                            </td>
+                            </td> -->
                         </tr>
                         <?php } ?>
                         
