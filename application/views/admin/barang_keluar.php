@@ -5,25 +5,25 @@
     <div class="modal-dialog modal-fullscreen-lg-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalFullscreenLgLabel">Edit Barang Keluar</h5>
+                <h5 class="modal-title" id="exampleModalFullscreenLgLabel">Mutasi Barang Keluar</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 
-             <?= form_open('Admin/barang_edit_up'); ?>
+             <?= form_open('Admin/mutasi_up'); ?>
                 <table class="table">
                     <tr>
                         <td>Nama Barang Mutasi</td>
                         <td>
                             <input type="text" name="nama_barang" class="form-control" value="<?= $row->nama_barang ?>" disabled>
-                            <input type="hidden" name="id_barang" value="<?= $row->id_barang ?>">
+                            <input type="hidden" name="id_barang_keluar" class="form-control" value="<?= $row->id_barang_keluar ?>">
                         </td>
                     </tr>
                     <tr>
                         <td>Ruangan</td>
                         <td>                            
                             <select name="id_ruangan" class="form-control"  id="" required>
-                                <option value="">Pilihan Awal ( <?= $row->nama_ruangan ?> )</option>
+                                <option value="<?= $row->id_ruangan ?>">Pilihan Awal ( <?= $row->nama_ruangan ?> )</option>
                                 <?php foreach ($tampil_ruangan as $row_2) { ?>
                                   <option value="<?= $row_2->id_ruangan ?>"><?= $row_2->nama_ruangan ?></option>
                                 <?php } ?>
@@ -34,10 +34,10 @@
                     <tr>
                         <td>Kondisi Barang Keluar</td>
                         <td>
-                            <select name="kondisi_barang" class="form-control"  id="" required>
-                                <option value="<?= $row->kondisi_barang ?>">Pilihan Awal ( <?= $row->kondisi_barang ?> )</option>
-                                <option value="baik">baik</option>
-                                <option value="rusak">rusak</option>
+                            <select name="kondisi_barang_keluar" class="form-control"  id="" required>
+                                <option value="<?= $row->kondisi_barang_keluar ?>">Pilihan Awal ( <?= $row->kondisi_barang_keluar ?> )</option>
+                                <option value="Baik">Baik</option>
+                                <option value="Rusak">Rusak</option>
                             </select>
                         </td>
                     </tr>
@@ -156,8 +156,8 @@
                             <td><?= $row->tgl_barang_keluar ?></td>
                             <td><?= $row->nama_barang ?></td>
                             <td><?= $row->nama_ruangan ?></td>
-                            <td><?= $row->jumlah_barang ?></td>
-                            <td><?= $row->kondisi_barang ?></td>
+                            <td><?= $row->jumlah_barang_keluar ?></td>
+                            <td><?= $row->kondisi_barang_keluar ?></td>
                             <td>
                                 <div class="dropdown d-inline-block">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">

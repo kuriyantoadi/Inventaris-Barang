@@ -224,6 +224,14 @@ class M_admin extends CI_Model{
       }
   }
 
+
+    public function mutasi_up($data_edit, $id_barang_keluar)
+    {
+      $this->db->where('id_barang_keluar', $id_barang_keluar);
+      $this->db->update('tb_barang_keluar', $data_edit);
+    }
+
+
   // akhir input barang masuk
 
 
@@ -252,159 +260,33 @@ class M_admin extends CI_Model{
   // akhir input barang keluar
 
 
-  // bagian siswa
-
-  //awal siswa
-  public function siswa_hapus($id_siswa)
-  {
-    $this->db->where($id_siswa);
-    $this->db->delete('tb_pendaftar');
+  public function get_total_barang_keluar() {
+      $this->db->select_sum('jumlah_barang_keluar');
+      $query = $this->db->get('tb_barang_keluar');
+      if ($query->num_rows() > 0) {
+          return $query->row()->jumlah_barang_keluar;
+      }
+      return 0;
   }
 
-  public function siswa_edit($id_siswa)
-  {
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    $this->db->join('tb_kompetensi_2', 'tb_pendaftar.id_kompetensi_2 = tb_kompetensi_2.id_kompetensi_2');
-    $this->db->where('id_siswa', $id_siswa);
-    $query = $this->db->get()->result();
-    return $query;
+  public function get_total_barang_masuk() {
+      $this->db->select_sum('jumlah_barang_masuk');
+      $query = $this->db->get('tb_barang_masuk');
+      if ($query->num_rows() > 0) {
+          return $query->row()->jumlah_barang_masuk;
+      }
+      return 0;
   }
 
-  // function siswa_edit_up($data_edit, $id_siswa)
-  // {
-  //   $this->db->where('id_siswa', $id_siswa);
-  //   $this->db->update('tb_pendaftar', $data_edit);
-  // }
-  // akhir siswa
-
-
-  // dashboard awal
-  function count_siswa($ses_kompetensi)
-  {
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    $this->db->where('short_kompetensi_1', $ses_kompetensi);
-    $query = $this->db->count_all_results();
-    return $query;
+  public function get_total_barang_rusak() {
+      $this->db->select_sum('jumlah_barang');
+      $this->db->where('kondisi_barang', 'rusak');
+      $query = $this->db->get('tb_barang');
+      if ($query->num_rows() > 0) {
+          return $query->row()->jumlah_barang;
+      }
+      return 0;
   }
-
-  function count_terverifikasi($ses_kompetensi)
-  {
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    $this->db->where('short_kompetensi_1', $ses_kompetensi);
-    $this->db->where('status_verifikasi', 'Data Sesuai');
-    $query = $this->db->count_all_results();
-    return $query;
-  }
-
-  // dashboard akhir
-
-  // awal operator adm
-
-  function count_adm(){
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    $query = $this->db->count_all_results();
-    return $query;
-  }
-
-  function count_selesai_adm(){
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    // $this->db->where('short_kompetensi_1', $ses_kompetensi);
-    $this->db->where('status_seleksi_administrasi', 'Data Sesuai');
-    $query = $this->db->count_all_results();
-    return $query;
-  }
-
-  function count_selesai_akademik(){
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    $this->db->where('status_tes_akademik', 'Sudah Tes');
-    $query = $this->db->count_all_results();
-    return $query;
-  }
-
-
-  // awal akademik
-  function count_selesai_wawancara($ses_kompetensi){
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    $this->db->where('status_tes_wawancara', 'Sudah Tes');
-    $this->db->where('short_kompetensi_1', $ses_kompetensi);
-    $query = $this->db->count_all_results();
-    return $query;
-  }
-
-  // akhir akademik
-
-
-  function count_semua_siswa()
-  {
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    $query = $this->db->count_all_results();
-    return $query;
-  }
-
-  public function tampil_adm()
-  {
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    $this->db->join('tb_kompetensi_2', 'tb_pendaftar.id_kompetensi_2 = tb_kompetensi_2.id_kompetensi_2');
-    // $this->db->where('id_siswa', $id_siswa);
-    $query = $this->db->get()->result();
-    return $query;
-  }
-
-   public function detail_a()
-  {
-    $this->db->select('*');
-    $this->db->from('tb_pendaftar');
-    $this->db->join('tb_kompetensi_1', 'tb_pendaftar.id_kompetensi_1 = tb_kompetensi_1.id_kompetensi_1');
-    $this->db->join('tb_kompetensi_2', 'tb_pendaftar.id_kompetensi_2 = tb_kompetensi_2.id_kompetensi_2');
-    // $this->db->where('id_siswa', $id_siswa);
-    $query = $this->db->get()->result();
-    return $query;
-  }
-  // akhir operator adm
-
-
-  // awal asal sekolah
-
-  function asal_sekolah_edit_up($data_edit, $id_asal_sekolah)
-  {
-    $this->db->where('id_asal_sekolah', $id_asal_sekolah);
-    $this->db->update('tb_asal_sekolah', $data_edit);
-  }
-
-  public function asal_sekolah_hapus($id_asal_sekolah)
-  {
-    $this->db->where($id_asal_sekolah);
-    $this->db->delete('tb_asal_sekolah');
-  }
-
-  public function asal_sekolah_edit($id_asal_sekolah)
-  {
-    $this->db->select('*');
-    $this->db->from('tb_asal_sekolah');
-    $this->db->where('id_asal_sekolah', $id_asal_sekolah);
-    $query = $this->db->get()->result();
-    return $query;
-  }
-
-  // akhir asal sekolah
 
 
 }

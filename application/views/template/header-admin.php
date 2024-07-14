@@ -146,7 +146,7 @@ $ses_id = $this->session->userdata('ses_id');
                         <li class="nav-item">
 
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="widgets.html">
+                                <a class="nav-link menu-link" href="<?= base_url() ?>Admin/index">
                                     <i class="ri-dashboard-line"></i> <span data-key="t-dashboard">Dashboard</span>
                                 </a>
                             </li>
@@ -160,6 +160,13 @@ $ses_id = $this->session->userdata('ses_id');
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?= base_url() ?>Admin/kategori_barang">
                                     <i class="ri-filter-line"></i> <span data-key="t-dashboard">Data Kategori Barang</span>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?= base_url() ?>Admin/input_barang_masuk">
+                                    <i class="ri-inbox-archive-line"></i> <span data-key="t-dashboard">Input Barang Masuk</span>
                                 </a>
                             </li>
 

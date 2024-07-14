@@ -224,8 +224,8 @@
                             <td><?= $no++ ?></td>
                             <td><?= $row->tgl_barang_masuk ?></td>
                             <td><?= $row->nama_barang ?></td>
-                            <td><?= $row->jumlah_barang ?></td>
-                            <td><?= $row->kondisi_barang ?></td>
+                            <td><?= $row->jumlah_barang_masuk ?></td>
+                            <td><?= $row->kondisi_barang_masuk ?></td>
                             <!-- <td>
                                 <div class="dropdown d-inline-block">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
