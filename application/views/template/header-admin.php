@@ -182,6 +182,12 @@ $ses_id = $this->session->userdata('ses_id');
                                 </a>
                             </li>
 
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?= base_url() ?>Admin/mutasi">
+                                    <i class="ri-shuffle-line"></i> <span data-key="t-dashboard">Data Mutasi</span>
+                                </a>
+                            </li>
+
                              <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?= base_url() ?>Admin/ruangan">
                                     <i class="ri-home-6-line"></i> <span data-key="t-dashboard">Data Ruangan</span>

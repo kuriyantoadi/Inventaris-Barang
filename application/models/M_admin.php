@@ -252,6 +252,18 @@ class M_admin extends CI_Model{
     return $query;
   }
 
+  public function barang_keluar_hapus($id_barang_keluar)
+  {
+    $this->db->where($id_barang_keluar);
+    $this->db->delete('tb_barang_keluar');
+  }
+
+  function barang_keluar_edit_up($data_edit, $id_barang_keluar)
+  {
+    $this->db->where('id_barang_keluar', $id_barang_keluar);
+    $this->db->update('tb_barang_keluar', $data_edit);
+  }
+
   function photo_barang_hapus($data_edit, $kode_barang)
   {
     $this->db->where($kode_barang);

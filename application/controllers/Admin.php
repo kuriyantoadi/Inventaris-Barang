@@ -533,6 +533,8 @@ class Admin extends CI_Controller {
 	public function barang_masuk()
 	{
 	    $data['tampil'] = $this->M_admin->barang_masuk();
+		$data['tampil_barang'] = $this->M_admin->barang();
+		$data['tampil_kategori'] = $this->M_admin->kategori_barang();
 
 		$this->load->view('template/header-admin');
 		$this->load->view('admin/barang_masuk', $data);
@@ -618,6 +620,59 @@ class Admin extends CI_Controller {
 
 		}
 	}
+
+	public function barang_masuk_edit_up()
+	{
+		$id_barang_masuk = $this->input->post('id_barang_masuk');
+		$id_barang = $this->input->post('id_barang');
+		$this->form_validation->set_rules('tgl_barang_masuk','Tgl_barang_masuk', 'trim','required','min_length[1]');
+		$this->form_validation->set_rules('jumlah_barang_masuk','Jumlah_barang_masuk', 'trim','required','min_length[1]');
+		$this->form_validation->set_rules('kondisi_barang_masuk','Kondisi_barang_masuk', 'trim','required','min_length[1]');
+	
+		if ($this->form_validation->run() == FALSE) {
+		
+		echo 'validasi error';  
+		$test = $this->form_validation->error_array();
+		var_dump($test);
+
+		} else {
+
+		$data_edit = array(
+			'id_barang' => set_value('id_barang'),
+			'tgl_barang_masuk' => set_value('tgl_barang_masuk'),
+			'jumlah_barang_masuk' => set_value('jumlah_barang_masuk'),
+			'kondisi_barang_masuk' => set_value('kondisi_barang_masuk'),
+
+		);
+
+		$this->M_admin->barang_masuk_edit_up($data_edit, $id_barang_masuk);
+
+		$this->session->set_flashdata('msg', '
+			<div class="alert alert-info alert-dismissible fade show" role="alert">
+				Edit Barang masuk Berhasil
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>');
+
+			// exit();
+			redirect('Admin/barang_masuk/');
+
+		}
+	}
+
+	public function barang_masuk_hapus($id_barang_masuk){
+		$id_barang_masuk = array('id_barang_masuk' => $id_barang_masuk);
+
+		$success = $this->M_admin->barang_masuk_hapus($id_barang_masuk);
+		$this->session->set_flashdata('msg', '
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				Hapus Barang Masuk Berhasil
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		');
+
+		// exit();
+		redirect('Admin/barang_masuk');
+	}
 	
 	// akhir input barang masuk
 
@@ -626,6 +681,7 @@ class Admin extends CI_Controller {
 	public function barang_keluar()
 	{
 	    $data['tampil'] = $this->M_admin->barang_keluar();
+		$data['tampil_barang'] = $this->M_admin->barang();
 		$data['tampil_ruangan'] = $this->M_admin->ruangan();
 
 		$this->load->view('template/header-admin');
@@ -683,6 +739,29 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function barang_keluar_hapus($id_barang_keluar){
+		$id_barang_keluar = array('id_barang_keluar' => $id_barang_keluar);
+
+		$success = $this->M_admin->barang_keluar_hapus($id_barang_keluar);
+		$this->session->set_flashdata('msg', '
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				Hapus Barang Keluar Berhasil
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		');
+		redirect('Admin/barang_keluar');
+	}
+
+	public function mutasi()
+	{
+	    $data['tampil'] = $this->M_admin->barang_keluar();
+		$data['tampil_ruangan'] = $this->M_admin->ruangan();
+
+		$this->load->view('template/header-admin');
+		$this->load->view('admin/mutasi', $data);
+		$this->load->view('template/footer-admin');
+	}
+
 	public function mutasi_up()
 	{
 	
@@ -719,6 +798,42 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function barang_keluar_edit_up()
+	{
+		$id_barang_keluar = $this->input->post('id_barang_keluar');
+		$id_barang = $this->input->post('id_barang');
+		$this->form_validation->set_rules('tgl_barang_keluar','Tgl_barang_keluar', 'trim','required','min_length[1]');
+		$this->form_validation->set_rules('jumlah_barang_keluar','Jumlah_barang_keluar', 'trim','required','min_length[1]');
+		$this->form_validation->set_rules('kondisi_barang_keluar','Kondisi_barang_keluar', 'trim','required','min_length[1]');
+	
+		if ($this->form_validation->run() == FALSE) {
+		
+		echo 'validasi error';  
+		$test = $this->form_validation->error_array();
+		var_dump($test);
+
+		} else {
+
+		$data_edit = array(
+			'id_barang' => set_value('id_barang'),
+			'tgl_barang_keluar' => set_value('tgl_barang_keluar'),
+			'jumlah_barang_keluar' => set_value('jumlah_barang_keluar'),
+			'kondisi_barang_keluar' => set_value('kondisi_barang_keluar'),
+
+		);
+
+		$this->M_admin->barang_keluar_edit_up($data_edit, $id_barang_keluar);
+
+		$this->session->set_flashdata('msg', '
+			<div class="alert alert-info alert-dismissible fade show" role="alert">
+				Edit Barang keluar Berhasil
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>');
+
+			// exit();
+			redirect('Admin/barang_keluar/');
+		}
+	}
 
 	// awal laporan
 
@@ -788,5 +903,11 @@ class Admin extends CI_Controller {
 	{
 		$this->load->view('admin/select');
 	}
+
+	// awal mutasi
+
+	
+
+	// akhir mutasi
 
 }

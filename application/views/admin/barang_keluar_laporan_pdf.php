@@ -57,7 +57,7 @@
                 <th>Jumlah Barang Keluar</th>
                 <th>Tanggal Barang Keluar</th>
                 <th>Kondisi Barang Keluar</th>
-                <th>Sumber Barang</th>                
+                <th>Ke Ruangan</th>                
             </tr>
         </thead>
         <tbody>

@@ -77,33 +77,51 @@
             </div>
             <div class="modal-body">
                 
-             <?= form_open('Admin/barang_edit_up'); ?>
+             <?= form_open('Admin/barang_masuk_edit_up'); ?>
                 <table class="table">
                     <tr>
                         <td>Nama Barang Masuk</td>
                         <td>
-                            <input type="text" name="nama_barang" class="form-control" value="<?= $row->nama_barang ?>" required>
-                            <input type="hidden" name="id_barang" value="<?= $row->id_barang ?>">
+                            <input type="hidden" name="id_barang_masuk" value="<?= $row->id_barang_masuk ?>">
+                            <select name="id_barang" class="form-control"  id="" required>
+                                <option value="<?= $row->id_barang ?>">Pilihan Awal ( <?= $row->nama_barang ?> )</option>
+                                <?php foreach ($tampil_barang as $row_2) { ?>
+                                  <option value="<?= $row_2->id_barang ?>"><?= $row_2->nama_barang ?></option>
+                                <?php } ?>
+                            </select>
                         </td>
                     </tr>
                     <tr>
+                        <td>Tanggal Barang Masuk</td>
+                        <td>
+                            <input type="date" name="tgl_barang_masuk" class="form-control" value="<?= $row->tgl_barang_masuk ?>" required>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Jumlah Barang Masuk</td>
+                        <td>
+                            <input type="number" name="jumlah_barang_masuk" class="form-control" value="<?= $row->jumlah_barang_masuk ?>" required>
+                        </td>
+                    </tr>
+                    <!-- <tr>
                         <td>Kategori Barang Masuk</td>
                         <td>
                             
                             <select name="id_kategori_barang" class="form-control"  id="" required>
                                 <option value="<?= $row->id_kategori_barang ?>">Pilihan Awal ( <?= $row->nama_kategori_barang ?> )</option>
-                                <?php foreach ($tampil_kategori as $row_2) { ?>
-                                  <option value="<?= $row_2->id_kategori_barang ?>"><?= $row_2->nama_kategori_barang ?></option>
+                                <?php foreach ($tampil_kategori as $row_3) { ?>
+                                  <option value="<?= $row_3->id_kategori_barang ?>"><?= $row_3->nama_kategori_barang ?></option>
                                 <?php } ?>
                             </select>
                         </td>
-                    </tr>
+                    </tr> -->
                     
                     <tr>
                         <td>Kondisi Barang Masuk</td>
                         <td>
-                            <select name="kondisi_barang" class="form-control"  id="" required>
-                                <option value="<?= $row->kondisi_barang ?>">Pilihan Awal ( <?= $row->kondisi_barang ?> )</option>
+                            <select name="kondisi_barang_masuk" class="form-control"  id="" required>
+                                <option value="<?= $row->kondisi_barang_masuk ?>">Pilihan Awal ( <?= $row->kondisi_barang ?> )</option>
                                 <option value="baik">baik</option>
                                 <option value="rusak">rusak</option>
                             </select>
@@ -211,7 +229,7 @@
                             <th>Nama Barang Masuk</th>
                             <th>Jumlah Barang</th>
                             <th>Kondisi Barang</th>
-                            <!-- <th>Opsi</th>                             -->
+                            <th>Opsi</th>                            
                         </tr>
                     </thead>
                     
@@ -226,7 +244,7 @@
                             <td><?= $row->nama_barang ?></td>
                             <td><?= $row->jumlah_barang_masuk ?></td>
                             <td><?= $row->kondisi_barang_masuk ?></td>
-                            <!-- <td>
+                            <td>
                                 <div class="dropdown d-inline-block">
                                     <button class="btn btn-soft-secondary btn-sm dropdown" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         <i class="ri-more-fill align-middle"></i>
@@ -239,13 +257,13 @@
                                         </li>
                                         
                                         <li>
-                                            <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('Admin/barang_hapus/'.$row->id_barang) ?>" onclick="return confirm('Anda yakin menghapus data barang <?= $row->nama_barang ?> ?')">
+                                            <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('Admin/barang_masuk_hapus/'.$row->id_barang_masuk) ?>" onclick="return confirm('Anda yakin menghapus data barang <?= $row->nama_barang ?> ?')">
                                                 <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
-                            </td> -->
+                            </td>
                         </tr>
                         <?php } ?>
                         

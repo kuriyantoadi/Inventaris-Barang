@@ -1,62 +1,43 @@
 <!-- Awal Modal Edit -->
 <?php foreach ($tampil as $row): ?>
 
-<div class="modal fade" id="modalEdit<?= $row->id_barang_keluar ?>" tabindex="-1" aria-labelledby="exampleModalFullscreenLgLabel" aria-hidden="true">
+<div class="modal fade" id="modalMutasi<?= $row->id_barang ?>" tabindex="-1" aria-labelledby="exampleModalFullscreenLgLabel" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen-lg-down">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalFullscreenLgLabel">Edit Barang Keluar</h5>
+                <h5 class="modal-title" id="exampleModalFullscreenLgLabel">Mutasi Barang Keluar</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 
-             <?= form_open('Admin/barang_keluar_edit_up'); ?>
+             <?= form_open('Admin/mutasi_up'); ?>
                 <table class="table">
                     <tr>
-                        <td>Nama Barang Keluar</td>
+                        <td>Nama Barang Mutasi</td>
                         <td>
-                            <input type="hidden" name="id_barang_keluar" value="<?= $row->id_barang_keluar ?>">
-                            <select name="id_barang" class="form-control"  id="" required>
-                                <option value="<?= $row->id_barang ?>">Pilihan Awal ( <?= $row->nama_barang ?> )</option>
-                                <?php foreach ($tampil_barang as $row_2) { ?>
-                                  <option value="<?= $row_2->id_barang ?>"><?= $row_2->nama_barang ?></option>
+                            <input type="text" name="nama_barang" class="form-control" value="<?= $row->nama_barang ?>" disabled>
+                            <input type="hidden" name="id_barang_keluar" class="form-control" value="<?= $row->id_barang_keluar ?>">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Ruangan</td>
+                        <td>                            
+                            <select name="id_ruangan" class="form-control"  id="" required>
+                                <option value="<?= $row->id_ruangan ?>">Pilihan Awal ( <?= $row->nama_ruangan ?> )</option>
+                                <?php foreach ($tampil_ruangan as $row_2) { ?>
+                                  <option value="<?= $row_2->id_ruangan ?>"><?= $row_2->nama_ruangan ?></option>
                                 <?php } ?>
                             </select>
                         </td>
                     </tr>
-                    <tr>
-                        <td>Tanggal Barang Keluar</td>
-                        <td>
-                            <input type="date" name="tgl_barang_keluar" class="form-control" value="<?= $row->tgl_barang_keluar ?>" required>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Jumlah Barang Keluar</td>
-                        <td>
-                            <input type="number" name="jumlah_barang_keluar" class="form-control" value="<?= $row->jumlah_barang_keluar ?>" required>
-                        </td>
-                    </tr>
-                    <!-- <tr>
-                        <td>Kategori Barang Keluar</td>
-                        <td>
-                            
-                            <select name="id_kategori_barang" class="form-control"  id="" required>
-                                <option value="<?= $row->id_kategori_barang ?>">Pilihan Awal ( <?= $row->nama_kategori_barang ?> )</option>
-                                <?php foreach ($tampil_kategori as $row_3) { ?>
-                                  <option value="<?= $row_3->id_kategori_barang ?>"><?= $row_3->nama_kategori_barang ?></option>
-                                <?php } ?>
-                            </select>
-                        </td>
-                    </tr> -->
                     
                     <tr>
                         <td>Kondisi Barang Keluar</td>
                         <td>
                             <select name="kondisi_barang_keluar" class="form-control"  id="" required>
-                                <option value="<?= $row->kondisi_barang_keluar ?>">Pilihan Awal ( <?= $row->kondisi_barang ?> )</option>
-                                <option value="baik">baik</option>
-                                <option value="rusak">rusak</option>
+                                <option value="<?= $row->kondisi_barang_keluar ?>">Pilihan Awal ( <?= $row->kondisi_barang_keluar ?> )</option>
+                                <option value="Baik">Baik</option>
+                                <option value="Rusak">Rusak</option>
                             </select>
                         </td>
                     </tr>
@@ -145,7 +126,7 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Data Barang Keluar</h5>
+                <h5 class="card-title mb-0">Data Barang Mutasi Barang</h5>
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('msg') ?>
@@ -183,22 +164,17 @@
                                         <i class="ri-more-fill align-middle"></i>
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <!-- <li>
+                                        <li>
                                             <button type="button" class="dropdown-item edit-item-btn" data-bs-toggle="modal" data-bs-target="#modalMutasi<?= $row->id_barang ?>">
                                                 <i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Mutasi Barang
                                             </button>
-                                        </li> -->
-                                        <li>
-                                            <button type="button" class="dropdown-item edit-item-btn" data-bs-toggle="modal" data-bs-target="#modalEdit<?= $row->id_barang_keluar ?>">
-                                                <i class="ri-pencil-fill align-bottom me-2 text-muted"></i>Edit
-                                            </button>
                                         </li>
                                         
-                                        <li>
-                                            <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('Admin/barang_keluar_hapus/'.$row->id_barang_keluar) ?>" onclick="return confirm('Anda yakin menghapus data barang keluar <?= $row->nama_barang ?> ?')">
+                                        <!-- <li>
+                                            <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('Admin/barang_hapus/'.$row->id_barang) ?>" onclick="return confirm('Anda yakin menghapus data barang <?= $row->nama_barang ?> ?')">
                                                 <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                             </a>
-                                        </li>
+                                        </li> -->
                                     </ul>
                                 </div>
                             </td>
