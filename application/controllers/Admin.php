@@ -8,6 +8,9 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		$this->load->model('M_admin');
 
+		$this->load->library('ciqrcode');
+        $this->load->helper('url');
+
       // session login
 		if ($this->session->userdata('admin') != true) {
 			$url = base_url('Login');
@@ -20,7 +23,6 @@ class Admin extends CI_Controller {
 		$data['total_barang_masuk'] = $this->M_admin->get_total_barang_masuk();
 		$data['total_barang_keluar'] = $this->M_admin->get_total_barang_keluar();
         $data['total_barang_rusak'] = $this->M_admin->get_total_barang_rusak();
-
 
 		$this->load->view('template/header-admin');
 		$this->load->view('admin/index', $data);
@@ -706,6 +708,19 @@ class Admin extends CI_Controller {
 		$this->form_validation->set_rules('kondisi_barang_keluar','Kondisi_barang_keluar', 'trim','required','min_length[1]');
 		$this->form_validation->set_rules('id_ruangan','Id_ruangan', 'trim','required','min_length[1]');
 
+		$token = md5(date('d-m-Y H:i:s'));
+
+		
+		// awal generate qrcode
+		$qr['data'] = 'localhost/invetaris-barang/qrcode/'.$token;
+        $qr['level'] = 'H';
+        $qr['size'] = 2;
+        $qr['savename'] = FCPATH.'assets/qr/qr-'.$token.'.png'; // Menyimpan gambar di assets/qr
+        $this->ciqrcode->generate($qr);
+        $data['qr_image'] = base_url().'assets/qr/qr-'.$token.'.png'; // Mengirim URL gambar ke view
+		// akhir generate qrcode
+
+
 		if ($this->form_validation->run() == FALSE) {
 		
 		echo 'validasi error';  
@@ -720,6 +735,7 @@ class Admin extends CI_Controller {
 			'tgl_barang_keluar' => $tgl_barang_keluar,
 			'kondisi_barang_keluar' => set_value('kondisi_barang_keluar'),
 			'id_ruangan' => set_value('id_ruangan'),
+			'token' => $token
 		);
 
 		$this->M_admin->input_barang_keluar_up($data_tambah);
@@ -904,10 +920,29 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/select');
 	}
 
-	// awal mutasi
+	// awal qrcode
+	public function barang_keluar_qrcode($id_barang_keluar)
+	{
+		$v_token = $this->M_admin->barang_keluar_detail($id_barang_keluar);
 
-	
+		foreach ($v_token as $cek_token):
+			$id_token = $cek_token->token;
+			$nama_barang = $cek_token->nama_barang;
+		endforeach;
+		
+	   	$qr['data'] = 'localhost/invetaris-barang/qrcode/'.$id_token;
+        $qr['level'] = 'H';
+        $qr['size'] = 2;
+        $qr['savename'] = FCPATH.'assets/qr/qr-'.$id_token.'.png'; // Menyimpan gambar di assets/qr
+        $this->ciqrcode->generate($qr);
+        $data['qr_image'] = base_url().'assets/qr/qr-'.$id_token.'.png'; // Mengirim URL gambar ke view
 
-	// akhir mutasi
+		$data['token'] = $id_token;
+		$data['nama_barang'] = $nama_barang;
+
+		$this->load->view('admin/barang_keluar_qrcode', $data);
+	}
+
+	// akhir qrcode
 
 }

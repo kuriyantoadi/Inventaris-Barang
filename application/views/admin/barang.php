@@ -332,11 +332,11 @@
                                             </a>
                                         </li>
 
-                                        <li>
+                                        <!-- <li>
                                             <button type="button" class="dropdown-item edit-item-btn" data-bs-toggle="modal" data-bs-target="#modalInputBarangMasuk<?= $row->id_barang ?>">
                                                 <i class=" ri-add-fill align-bottom me-2 text-muted"></i>Input Barang Masuk
                                             </button>
-                                        </li>
+                                        </li> -->
 
                                          <li>
                                             <button type="button" class="dropdown-item edit-item-btn" data-bs-toggle="modal" data-bs-target="#modalInputBarangKeluar<?= $row->id_barang ?>">

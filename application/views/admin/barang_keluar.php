@@ -195,6 +195,19 @@
                                         </li>
                                         
                                         <li>
+                                            <!-- <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('assets/qr/qr-'.$token.'.png'); ?>" download="qrcode-<?= $nama_barang ?>.png"> -->
+                                            <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('assets/qr/qr-'.$row->token.'.png'); ?>" download="qrcode-<?= $row->nama_barang ?>.png" >
+                                                <i class="ri-download-fill align-bottom me-2 text-muted"></i> Download QR Code Barang Keluar
+                                            </a>
+                                        </li>
+
+                                        <!-- <li>
+                                            <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('Admin/barang_keluar_qrcode/'.$row->id_barang_keluar) ?>">
+                                                <i class="ri-download-fill align-bottom me-2 text-muted"></i> Download QR Code Barang Keluar
+                                            </a>
+                                        </li> -->
+
+                                        <li>
                                             <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('Admin/barang_keluar_hapus/'.$row->id_barang_keluar) ?>" onclick="return confirm('Anda yakin menghapus data barang keluar <?= $row->nama_barang ?> ?')">
                                                 <i class="ri-delete-bin-fill align-bottom me-2 text-muted"></i> Delete
                                             </a>

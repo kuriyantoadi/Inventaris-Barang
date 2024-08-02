@@ -241,6 +241,25 @@ class M_admin extends CI_Model{
     $this->db->insert('tb_barang_keluar', $data_tambah);
   }
 
+  public function barang_keluar_detail($id_barang_keluar)
+  {
+    $this->db->from('tb_barang_keluar');
+    $this->db->join('tb_barang', 'tb_barang_keluar.id_barang = tb_barang.id_barang');
+    $this->db->where('id_barang_keluar', $id_barang_keluar);
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
+  function siswa_detail($ses_id)
+  {
+    $this->db->select('*');
+    $this->db->from('tb_siswa');
+    $this->db->join('tb_kelas', 'tb_siswa.id_kelas = tb_kelas.id_kelas');
+    $this->db->where('id_siswa', $ses_id);
+    $query = $this->db->get()->result();
+    return $query;
+  }
+
   public function barang_keluar()
   {
     $this->db->select('*');
