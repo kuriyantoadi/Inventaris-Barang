@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<!-- Akhir Modal Tambah -->
+<!-- Akhir Modal Laporan -->
 
 <!-- Awal Modal Edit -->
 <?php foreach ($tampil as $row): ?>

@@ -707,8 +707,8 @@ class Admin extends CI_Controller {
 		$jumlah_barang_keluar = $this->input->post('jumlah_barang_keluar');
 
 		//ubah tanggal barang keluar
-		$tgl_barang_keluar_format = new DateTime($this->input->post('tgl_barang_keluar'));
-		$tgl_barang_keluar = $tgl_barang_keluar_format->format('d-m-Y');
+		// $tgl_barang_keluar_format = new DateTime($this->input->post('tgl_barang_keluar'));
+		// $tgl_barang_keluar = $tgl_barang_keluar_format->format('d-m-Y');
 		// var_dump($tgl_barang_keluar);
 		// exit();
 
@@ -742,7 +742,7 @@ class Admin extends CI_Controller {
 		$data_tambah = array(
 			'id_barang' => set_value('id_barang'),
 			'jumlah_barang_keluar' => set_value('jumlah_barang_keluar'),
-			'tgl_barang_keluar' => $tgl_barang_keluar,
+			'tgl_barang_keluar' => set_value('tgl_barang_keluar'),
 			'kondisi_barang_keluar' => set_value('kondisi_barang_keluar'),
 			'id_ruangan' => set_value('id_ruangan'),
 			'token' => $token
@@ -815,6 +815,16 @@ class Admin extends CI_Controller {
 			redirect('Admin/barang_keluar/');
 		}
 	}
+
+	public function barang_keluar_laporan_xls() {
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+
+        $data['tampil'] = $this->M_admin->barang_keluar_laporan_xls($start_date, $end_date);
+        $this->load->view('admin/barang_keluar_laporan_xls', $data);
+    }
+
+	// akhir barang keluar
 
 	// awal laporan
 

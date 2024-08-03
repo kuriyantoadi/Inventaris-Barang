@@ -288,17 +288,29 @@ class M_admin extends CI_Model{
     $this->db->where($kode_barang);
     $this->db->update('tb_barang', $data_edit);
   }
+
+  public function barang_keluar_laporan_xls($start_date, $end_date) {
+    $this->db->where('tgl_barang_keluar >=', $start_date);
+    $this->db->where('tgl_barang_keluar <=', $end_date);
+    $this->db->join('tb_barang', 'tb_barang_keluar.id_barang = tb_barang.id_barang');
+    $this->db->join('tb_ruangan', 'tb_barang_keluar.id_ruangan = tb_ruangan.id_ruangan');
+    $query = $this->db->get('tb_barang_keluar'); // ganti 'your_table_name' dengan nama tabel Anda
+    return $query->result();
+  }
+
+  public function get_total_barang_keluar() {
+    $this->db->select_sum('jumlah_barang_keluar');
+    $query = $this->db->get('tb_barang_keluar');
+    if ($query->num_rows() > 0) {
+        return $query->row()->jumlah_barang_keluar;
+    }
+    return 0;
+  }
+
   // akhir input barang keluar
 
 
-  public function get_total_barang_keluar() {
-      $this->db->select_sum('jumlah_barang_keluar');
-      $query = $this->db->get('tb_barang_keluar');
-      if ($query->num_rows() > 0) {
-          return $query->row()->jumlah_barang_keluar;
-      }
-      return 0;
-  }
+ 
 
   public function get_total_barang_masuk() {
       $this->db->select_sum('jumlah_barang_masuk');

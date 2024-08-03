@@ -1,3 +1,41 @@
+<!-- Awal Modal Laporan -->
+<div class="modal fade" id="modalLaporan" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Laporan Barang Keluar</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+             <?= form_open('Admin/barang_keluar_laporan_xls'); ?>
+                <table class="table">
+                    <tr>
+                        <td>Tanggal Awal</td>
+                        <td>
+                            <input type="date" name="start_date" class="form-control" required>                        
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tanggal Akhir</td>
+                        <td>
+                            <input type="date" name="end_date" class="form-control" required>                        
+                        </td>
+                    </tr>
+                </table>
+               
+            </div>
+            <div class="modal-footer">
+                <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
+                <input type="submit" class="btn btn-primary" value="Download"></input>
+            </div>
+             <?= form_close(); ?>
+        </div>
+    </div>
+</div>
+
+<!-- Akhir Modal Laporan -->
+
 <!-- Awal Modal Edit -->
 <?php foreach ($tampil as $row): ?>
 
@@ -136,9 +174,6 @@
 
 <!-- Akhir Modal Input Barang Keluar -->
 
-
-
-
 <!-- Awal Tabel -->
 
 <div class="row">
@@ -149,8 +184,9 @@
             </div>
             <div class="card-body">
                 <?= $this->session->flashdata('msg') ?>
-                <a href="<?= base_url() ?>Admin/barang_keluar_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Keluar XLS</a>
-                <a href="<?= base_url() ?>Admin/barang_keluar_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Keluar PDF</a>
+                <!-- <a href="<?= base_url() ?>Admin/barang_keluar_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Keluar XLS</a> -->
+                <!-- <a href="<?= base_url() ?>Admin/barang_keluar_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Keluar PDF</a> -->
+                <button type="button" class="btn btn-success btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalLaporan"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i>Laporan </button>
 
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
                     <thead>
