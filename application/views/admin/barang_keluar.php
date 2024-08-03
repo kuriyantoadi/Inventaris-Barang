@@ -231,7 +231,6 @@
                                         </li>
                                         
                                         <li>
-                                            <!-- <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('assets/qr/qr-'.$token.'.png'); ?>" download="qrcode-<?= $nama_barang ?>.png"> -->
                                             <a type="button" class="dropdown-item remove-item-btn" href="<?= site_url('assets/qr/qr-'.$row->token.'.png'); ?>" download="qrcode-<?= $row->nama_barang ?>.png" >
                                                 <i class="ri-download-fill align-bottom me-2 text-muted"></i> Download QR Code Barang Keluar
                                             </a>
