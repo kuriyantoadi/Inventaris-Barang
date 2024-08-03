@@ -184,6 +184,14 @@ class M_admin extends CI_Model{
     $this->db->delete('tb_barang_masuk');
   }
 
+  public function barang_masuk_laporan_xls($start_date, $end_date) {
+    $this->db->where('tgl_barang_masuk >=', $start_date);
+    $this->db->where('tgl_barang_masuk <=', $end_date);
+    $this->db->join('tb_barang', 'tb_barang_masuk.id_barang = tb_barang.id_barang');
+    $query = $this->db->get('tb_barang_masuk'); // ganti 'your_table_name' dengan nama tabel Anda
+    return $query->result();
+  }
+
 
   // akhir barang masuk
 
@@ -223,14 +231,6 @@ class M_admin extends CI_Model{
           // echo "Data tidak ditemukan.";
       }
   }
-
-
-    public function mutasi_up($data_edit, $id_barang_keluar)
-    {
-      $this->db->where('id_barang_keluar', $id_barang_keluar);
-      $this->db->update('tb_barang_keluar', $data_edit);
-    }
-
 
   // akhir input barang masuk
 
@@ -318,6 +318,39 @@ class M_admin extends CI_Model{
       }
       return 0;
   }
+
+  // awal mutasi
+
+  public function mutasi()
+  {
+      $this->db->select('tb_mutasi.*, tb_barang.*, ruangan_awal.nama_ruangan AS nama_ruangan_awal, ruangan_tujuan.nama_ruangan AS nama_ruangan_tujuan');
+      $this->db->from('tb_mutasi');
+      $this->db->join('tb_barang', 'tb_mutasi.id_barang = tb_barang.id_barang');
+      $this->db->join('tb_ruangan AS ruangan_awal', 'tb_mutasi.id_ruangan_awal = ruangan_awal.id_ruangan');
+      $this->db->join('tb_ruangan AS ruangan_tujuan', 'tb_mutasi.id_ruangan_tujuan = ruangan_tujuan.id_ruangan');
+      $query = $this->db->get()->result();
+      return $query;
+  }
+
+
+  public function mutasi_tambah_up($data_tambah)
+  {
+    $this->db->insert('tb_mutasi', $data_tambah);
+  }
+
+  public function mutasi_hapus($id_mutasi)
+  {
+    $this->db->where($id_mutasi);
+    $this->db->delete('tb_mutasi');
+  }
+
+  function mutasi_edit_up($data_edit, $id_mutasi)
+  {
+    $this->db->where('id_mutasi', $id_mutasi);
+    $this->db->update('tb_mutasi', $data_edit);
+  }
+
+  // akhir mutasi
 
 
 }

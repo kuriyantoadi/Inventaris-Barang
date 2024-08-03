@@ -579,8 +579,8 @@ class Admin extends CI_Controller {
 		$jumlah_barang_masuk = $this->input->post('jumlah_barang_masuk');
 
 		//ubah tanggal barang masuk
-		$tgl_barang_masuk_format = new DateTime($this->input->post('tgl_barang_masuk'));
-		$tgl_barang_masuk = $tgl_barang_masuk_format->format('d-m-Y');
+		// $tgl_barang_masuk_format = new DateTime($this->input->post('tgl_barang_masuk'));
+		// $tgl_barang_masuk = $tgl_barang_masuk_format->format('d-m-Y');
 		// var_dump($tgl_barang_masuk);
 		// exit();
 
@@ -601,7 +601,7 @@ class Admin extends CI_Controller {
 		$data_tambah = array(
 			'id_barang' => set_value('id_barang'),
 			'jumlah_barang_masuk' => set_value('jumlah_barang_masuk'),
-			'tgl_barang_masuk' => $tgl_barang_masuk,
+			'tgl_barang_masuk' => set_value('tgl_barang_masuk'),
 			'kondisi_barang_masuk' => set_value('kondisi_barang_masuk'),
 			'sumber_barang' => set_value('sumber_barang'),
 		);
@@ -676,6 +676,16 @@ class Admin extends CI_Controller {
 		redirect('Admin/barang_masuk');
 	}
 	
+
+	public function barang_masuk_laporan_xls() {
+        $start_date = $this->input->post('start_date');
+        $end_date = $this->input->post('end_date');
+
+        $data['tampil'] = $this->M_admin->barang_masuk_laporan_xls($start_date, $end_date);
+        $this->load->view('admin/barang_masuk_laporan_xls', $data);
+    }
+
+
 	// akhir input barang masuk
 
 	// awal input barang keluar
@@ -768,51 +778,6 @@ class Admin extends CI_Controller {
 		redirect('Admin/barang_keluar');
 	}
 
-	public function mutasi()
-	{
-	    $data['tampil'] = $this->M_admin->barang_keluar();
-		$data['tampil_ruangan'] = $this->M_admin->ruangan();
-
-		$this->load->view('template/header-admin');
-		$this->load->view('admin/mutasi', $data);
-		$this->load->view('template/footer-admin');
-	}
-
-	public function mutasi_up()
-	{
-	
-		$id_barang_keluar = $this->input->post('id_barang_keluar');
-		// Set form validation rules
-		$this->form_validation->set_rules('id_barang_keluar', 'Id_barang_keluar', 'trim|required|min_length[1]');
-		$this->form_validation->set_rules('kondisi_barang_keluar', 'Kondisi_barang_keluar', 'trim|required|min_length[1]');
-		$this->form_validation->set_rules('id_ruangan', 'Id_ruangan', 'trim|required|min_length[1]');
-
-		if ($this->form_validation->run() == FALSE) {
-			echo 'validasi error';  
-			$test = $this->form_validation->error_array();
-			var_dump($test);
-		} else {
-			$data_tambah = array(
-				'id_barang_keluar' => set_value('id_barang_keluar'),
-				'kondisi_barang_keluar' =>set_value('kondisi_barang_keluar'),
-				'id_ruangan' =>set_value('id_ruangan')
-			);
-
-			$this->M_admin->mutasi_up($data_tambah, $id_barang_keluar);
-			exit();
-
-			// update jumlah barang keluar
-			// $this->M_admin->input_barang_keluar_up_jumlah($jumlah_barang_keluar, $id_barang);
-
-			$this->session->set_flashdata('msg', '
-				<div class="alert alert-info alert-dismissible fade show" role="alert">
-					Edit Mutasi barang Berhasil
-					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-				</div>');
-			// var_dump($id_siswa);
-			redirect('Admin/barang_keluar/');
-		}
-	}
 
 	public function barang_keluar_edit_up()
 	{
@@ -944,5 +909,111 @@ class Admin extends CI_Controller {
 	}
 
 	// akhir qrcode
+
+	// awal mutasi
+
+	public function mutasi()
+	{
+	    $data['tampil'] = $this->M_admin->mutasi();
+		$data['tampil_barang'] = $this->M_admin->barang();
+		$data['tampil_ruangan'] = $this->M_admin->ruangan();
+
+		$this->load->view('template/header-admin');
+		$this->load->view('admin/mutasi', $data);
+		$this->load->view('template/footer-admin');
+	}
+
+	public function mutasi_tambah_up()
+	{
+	
+		// Set form validation rules
+		$this->form_validation->set_rules('tgl_mutasi', 'Tgl_mutasi', 'trim|required|min_length[1]');
+		$this->form_validation->set_rules('id_barang', 'Id_barang_keluar', 'trim|required|min_length[1]');
+		$this->form_validation->set_rules('id_ruangan_awal', 'Id_ruangan_awal', 'trim|required|min_length[1]');
+		$this->form_validation->set_rules('id_ruangan_tujuan', 'Id_ruangan_tujuan', 'trim|required|min_length[1]');
+		$this->form_validation->set_rules('jumlah_mutasi', 'Jumlah_mutasi', 'trim|required|min_length[1]');
+
+
+		if ($this->form_validation->run() == FALSE) {
+			echo 'validasi error';  
+			$test = $this->form_validation->error_array();
+			var_dump($test);
+		} else {
+			$data_tambah = array(
+				'tgl_mutasi' => set_value('tgl_mutasi'),
+				'id_barang' => set_value('id_barang'),
+				'id_ruangan_awal' =>set_value('id_ruangan_awal'),
+				'id_ruangan_tujuan' =>set_value('id_ruangan_tujuan'),
+				'jumlah_mutasi' =>set_value('jumlah_mutasi')
+			);
+
+			$this->M_admin->mutasi_tambah_up($data_tambah);
+			// exit();
+
+			// update jumlah barang keluar
+			// $this->M_admin->input_barang_keluar_up_jumlah($jumlah_barang_keluar, $id_barang);
+
+			$this->session->set_flashdata('msg', '
+				<div class="alert alert-info alert-dismissible fade show" role="alert">
+					Tambah Mutasi Barang Berhasil
+					<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+				</div>');
+			redirect('Admin/mutasi/');
+		}
+	}
+
+	public function mutasi_hapus($id_mutasi){
+		$id_mutasi = array('id_mutasi' => $id_mutasi);
+
+		$success = $this->M_admin->mutasi_hapus($id_mutasi);
+		$this->session->set_flashdata('msg', '
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+				Mutasi Hapus Berhasil
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		');
+		redirect('Admin/mutasi');
+	}
+
+	public function mutasi_edit_up()
+	{
+		$id_mutasi = $this->input->post('id_mutasi');
+		$this->form_validation->set_rules('tgl_mutasi', 'Tgl_mutasi', 'trim|required|min_length[1]');
+		$this->form_validation->set_rules('id_barang', 'Id_barang_keluar', 'trim|required|min_length[1]');
+		$this->form_validation->set_rules('id_ruangan_awal', 'Id_ruangan_awal', 'trim|required|min_length[1]');
+		$this->form_validation->set_rules('id_ruangan_tujuan', 'Id_ruangan_tujuan', 'trim|required|min_length[1]');
+		$this->form_validation->set_rules('jumlah_mutasi', 'Jumlah_mutasi', 'trim|required|min_length[1]');
+
+		if ($this->form_validation->run() == FALSE) {
+		
+		echo 'validasi error';  
+		$test = $this->form_validation->error_array();
+		var_dump($test);
+
+		} else {
+
+		$data_edit = array(
+			'tgl_mutasi' => set_value('tgl_mutasi'),
+			'id_barang' => set_value('id_barang'),
+			'id_ruangan_awal' =>set_value('id_ruangan_awal'),
+			'id_ruangan_tujuan' =>set_value('id_ruangan_tujuan'),
+			'jumlah_mutasi' =>set_value('jumlah_mutasi')
+		);
+
+		$this->M_admin->mutasi_edit_up($data_edit, $id_mutasi);
+
+		$this->session->set_flashdata('msg', '
+			<div class="alert alert-info alert-dismissible fade show" role="alert">
+				Edit Mutasi Berhasil
+				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>');
+
+			redirect('Admin/mutasi/');
+
+		}
+	}
+
+
+	// akhir mutasi
 
 }

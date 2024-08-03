@@ -1,54 +1,25 @@
-<!-- Awal Modal Tambah -->
-<div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Awal Modal Laporan -->
+<div class="modal fade" id="modalLaporan" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Tambah Barang Masuk</h5>
+                <h5 class="modal-title" id="myModalLabel">Laporan Barang Masuk</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 
-             <?= form_open('Admin/barang_tambah_up'); ?>
+             <?= form_open('Admin/barang_masuk_laporan_xls'); ?>
                 <table class="table">
                     <tr>
-                        <td>Nama Barang Masuk</td>
+                        <td>Tanggal Awal</td>
                         <td>
-                            <!-- <input type="text" name="nama_barang" class="form-control" required> -->
-                            <select class="form-control js-example-templating">
-                                <optgroup label="Alaskan/Hawaiian Time Zone">
-                                    <option value="AK">Alaska</option>
-                                    <option value="HI">Hawaii</option>
-                                </optgroup>
-                                <optgroup label="Pacific Time Zone">
-                                    <option value="CA">California</option>
-                                    <option value="NV">Nevada</option>
-                                    <option value="OR">Oregon</option>
-                                    <option value="WA">Washington</option>
-                                </optgroup>
-                            </select>
+                            <input type="date" name="start_date" class="form-control" required>                        
                         </td>
                     </tr>
                     <tr>
-                        <td>Kategori Barang Masuk</td>
+                        <td>Tanggal Akhir</td>
                         <td>
-                           
-                            <!-- <select name="id_kategori_barang" class="form-control"  id="" required>
-                                <option value="">Pilihan</option>
-                                <?php foreach ($tampil_kategori as $row_2) { ?>
-                                  <option value="<?= $row_2->id_kategori_barang ?>"><?= $row_2->nama_kategori_barang ?></option>
-                                <?php } ?>
-                            </select> -->
-                        </td>
-                    </tr>
-                    
-                    <tr>
-                        <td>Kondisi Barang Masuk</td>
-                        <td>
-                            <select name="kondisi_barang" class="form-control"  id="" required>
-                                <option value="">Pilihan</option>
-                                <option value="baik">baik</option>
-                                <option value="rusak">rusak</option>
-                            </select>
+                            <input type="date" name="end_date" class="form-control" required>                        
                         </td>
                     </tr>
                 </table>
@@ -56,7 +27,7 @@
             </div>
             <div class="modal-footer">
                 <a href="javascript:void(0);" class="btn btn-link link-success fw-medium material-shadow-none" data-bs-dismiss="modal"><i class="ri-close-line me-1 align-middle"></i> Close</a>
-                <input type="submit" class="btn btn-primary" value="Save changes"></input>
+                <input type="submit" class="btn btn-primary" value="Download"></input>
             </div>
              <?= form_close(); ?>
         </div>
@@ -217,8 +188,10 @@
             <div class="card-body">
                 <?= $this->session->flashdata('msg') ?>
                 <!-- <a href="<?= base_url() ?>Admin/barang_masuk_laporan" type="button" class="btn btn-info btn-sm mb-2">Laporan Barang Masuk XLS</a> -->
-                <a href="<?= base_url() ?>Admin/barang_masuk_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Masuk XLS</a>
-                <a href="<?= base_url() ?>Admin/barang_masuk_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Masuk PDF</a>
+                
+                <!-- <a href="<?= base_url() ?>Admin/barang_masuk_laporan" type="button" class="btn btn-sm btn-success btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Masuk XLS</a> -->
+                <!-- <a href="<?= base_url() ?>Admin/barang_masuk_laporan_pdf" type="button" class="btn btn-sm btn-danger btn-label mb-2"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i> Laporan Barang Masuk PDF</a> -->
+                <button type="button" class="btn btn-success btn-sm mb-2" data-bs-toggle="modal" data-bs-target="#modalLaporan"><i class="ri-file-download-line label-icon align-middle fs-16 me-2"></i>Laporan XLS</button>
 
 
                 <table id="example" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
